@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SE1811.DAO;
 
@@ -10,9 +11,11 @@ using SE1811.DAO;
 namespace SE1811.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    partial class ProductContextModelSnapshot : ModelSnapshot
+    [Migration("20250521075634_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +80,38 @@ namespace SE1811.Migrations
                             CategoryID = 1,
                             DescriptionProduct = "Classic acoustic guitar",
                             NameProduct = "Guitar",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 2,
+                            CategoryID = 1,
+                            DescriptionProduct = "88-key digital piano",
+                            NameProduct = "Piano",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 3,
+                            CategoryID = 1,
+                            DescriptionProduct = "Standard 5-piece drum set",
+                            NameProduct = "Drum Set",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 4,
+                            CategoryID = 1,
+                            DescriptionProduct = "Full size violin",
+                            NameProduct = "Violin",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 5,
+                            CategoryID = 1,
+                            DescriptionProduct = "Silver concert flute",
+                            NameProduct = "Flute",
                             Price = 0
                         });
                 });

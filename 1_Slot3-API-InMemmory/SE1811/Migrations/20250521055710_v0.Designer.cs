@@ -11,8 +11,8 @@ using SE1811.DAO;
 namespace SE1811.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20250520071252_v1")]
-    partial class v1
+    [Migration("20250521055710_v0")]
+    partial class v0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,38 @@ namespace SE1811.Migrations
                     b.HasKey("ProductID");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductID = 1,
+                            DescriptionProduct = "Classic acoustic guitar",
+                            NameProduct = "Guitar"
+                        },
+                        new
+                        {
+                            ProductID = 2,
+                            DescriptionProduct = "88-key digital piano",
+                            NameProduct = "Piano"
+                        },
+                        new
+                        {
+                            ProductID = 3,
+                            DescriptionProduct = "Standard 5-piece drum set",
+                            NameProduct = "Drum Set"
+                        },
+                        new
+                        {
+                            ProductID = 4,
+                            DescriptionProduct = "Full size violin",
+                            NameProduct = "Violin"
+                        },
+                        new
+                        {
+                            ProductID = 5,
+                            DescriptionProduct = "Silver concert flute",
+                            NameProduct = "Flute"
+                        });
                 });
 #pragma warning restore 612, 618
         }
