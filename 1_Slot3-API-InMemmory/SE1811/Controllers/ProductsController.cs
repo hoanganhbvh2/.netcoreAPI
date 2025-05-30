@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
+using Elfie.Serialization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using SE1811.DAO;
 using SE1811.model;
@@ -30,6 +32,8 @@ namespace SE1811.Controllers
         }
         //[Produces("application/xml")]
         [HttpGet]
+        [EnableQuery(PageSize = 5)]
+ 
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.ToListAsync();
@@ -82,10 +86,15 @@ namespace SE1811.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            _context.Products.Add(product);
+            var exit = await _context.Categories.FindAsync(product.CategoryID);
+            if (exit == null) {
+                return BadRequest("khong thay id") ;
+            }
+            else { 
+                _context.Products.Add(product);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetProduct", new { id = product.ProductID }, product);
+            }
         }
 
         // DELETE: api/Products/5

@@ -11,8 +11,8 @@ using SE1811.DAO;
 namespace SE1811.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20250521075634_v5")]
-    partial class v5
+    [Migration("20250529074202_v0")]
+    partial class v0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,26 @@ namespace SE1811.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            CategoryName = "Instruments",
+                            Description = "Musical instruments category"
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            CategoryName = "Electronics",
+                            Description = "Electronic devices category"
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            CategoryName = "Books",
+                            Description = "All kinds of books"
+                        });
                 });
 
             modelBuilder.Entity("SE1811.model.Product", b =>
@@ -112,6 +132,62 @@ namespace SE1811.Migrations
                             CategoryID = 1,
                             DescriptionProduct = "Silver concert flute",
                             NameProduct = "Flute",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 6,
+                            CategoryID = 2,
+                            DescriptionProduct = "DSLR professional",
+                            NameProduct = "Canon Camera",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 7,
+                            CategoryID = 2,
+                            DescriptionProduct = "Mobile phone",
+                            NameProduct = "Samsung Galaxy",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 8,
+                            CategoryID = 2,
+                            DescriptionProduct = "Apple laptop",
+                            NameProduct = "MacBook Air",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 9,
+                            CategoryID = 2,
+                            DescriptionProduct = "Wireless",
+                            NameProduct = "Logitech Mouse",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 10,
+                            CategoryID = 2,
+                            DescriptionProduct = "24-inch screen",
+                            NameProduct = "HP Monitor",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 11,
+                            CategoryID = 3,
+                            DescriptionProduct = "Beginner to Advanced",
+                            NameProduct = "C# Programming",
+                            Price = 0
+                        },
+                        new
+                        {
+                            ProductID = 12,
+                            CategoryID = 3,
+                            DescriptionProduct = "A Handbook of Agile Software Craftsmanship",
+                            NameProduct = "Clean Code",
                             Price = 0
                         });
                 });

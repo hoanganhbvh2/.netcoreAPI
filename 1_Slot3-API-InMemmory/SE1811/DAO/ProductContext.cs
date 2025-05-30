@@ -20,6 +20,7 @@ namespace SE1811.DAO
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryID).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Seed();
+
         }
     }
 }

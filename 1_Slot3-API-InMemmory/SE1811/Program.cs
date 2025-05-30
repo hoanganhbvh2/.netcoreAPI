@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using SE1811.CustomFommatter;
 using SE1811.DAO;
+using SE1811.model;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(options =>
@@ -22,6 +26,24 @@ builder.Services.AddDbContext<ProductContext>(op => op.UseSqlServer(
 //    options.OutputFormatters.Add(new CsvOutputFomatter());
 //});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//IEdmModel GetEdmModel()
+//{
+//    var odataBuilder = new ODataConventionModelBuilder();
+//    odataBuilder.EntitySet<Product>("YourEntities"); // Replace with your entity
+//    return odataBuilder.GetEdmModel();
+//}
+builder.Services.AddControllers().AddOData(
+    options => options.Select().Filter().Count().OrderBy()
+    );
+//builder.Services.AddControllers()
+//.AddOData(options => options
+//.Select()
+//.Filter()
+//.Count()
+//.OrderBy()
+//.Expand()
+//.AddRouteComponents("odata", GetEdmModel())
+//);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
