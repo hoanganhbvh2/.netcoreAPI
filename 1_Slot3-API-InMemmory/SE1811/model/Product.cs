@@ -24,9 +24,7 @@ namespace SE1811.model
         public int CategoryID { get; set; }
 
         // Navigation property
-        [JsonIgnore]
+        //[JsonIgnore]
         public Category? Category { get; set; }
-
-
     }
 }

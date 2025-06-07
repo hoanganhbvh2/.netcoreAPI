@@ -21,6 +21,195 @@ namespace SE1811.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SE1811.model.Book", b =>
+                {
+                    b.Property<int>("BookID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("AverageRating")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BookID");
+
+                    b.ToTable("Book");
+
+                    b.HasData(
+                        new
+                        {
+                            BookID = 1,
+                            Author = "J.R.R. Tolkien",
+                            AverageRating = 4.8m,
+                            Price = 15.99m,
+                            Title = "The Hobbit"
+                        },
+                        new
+                        {
+                            BookID = 2,
+                            Author = "J.K. Rowling",
+                            AverageRating = 4.9m,
+                            Price = 20.50m,
+                            Title = "Harry Potter and the Philosopher's Stone"
+                        },
+                        new
+                        {
+                            BookID = 3,
+                            Author = "F. Scott Fitzgerald",
+                            AverageRating = 4.3m,
+                            Price = 12.99m,
+                            Title = "The Great Gatsby"
+                        },
+                        new
+                        {
+                            BookID = 4,
+                            Author = "Arthur Conan Doyle",
+                            AverageRating = 4.6m,
+                            Price = 18.75m,
+                            Title = "Adventure of Sherlock Holmes"
+                        },
+                        new
+                        {
+                            BookID = 5,
+                            Author = "Jane Austen",
+                            AverageRating = 4.7m,
+                            Price = 10.00m,
+                            Title = "Pride and Prejudice"
+                        },
+                        new
+                        {
+                            BookID = 6,
+                            Author = "J.R.R. Tolkien",
+                            AverageRating = 4.9m,
+                            Price = 25.00m,
+                            Title = "The Lord of the Rings"
+                        },
+                        new
+                        {
+                            BookID = 7,
+                            Author = "George Orwell",
+                            AverageRating = 4.5m,
+                            Price = 14.99m,
+                            Title = "1984"
+                        },
+                        new
+                        {
+                            BookID = 8,
+                            Author = "Harper Lee",
+                            AverageRating = 4.8m,
+                            Price = 13.50m,
+                            Title = "To Kill a Mockingbird"
+                        },
+                        new
+                        {
+                            BookID = 9,
+                            Author = "J.D. Salinger",
+                            AverageRating = 4.2m,
+                            Price = 11.99m,
+                            Title = "The Catcher in the Rye"
+                        },
+                        new
+                        {
+                            BookID = 10,
+                            Author = "Paulo Coelho",
+                            AverageRating = 4.4m,
+                            Price = 16.50m,
+                            Title = "The Alchemist"
+                        },
+                        new
+                        {
+                            BookID = 11,
+                            Author = "Dan Brown",
+                            AverageRating = 4.1m,
+                            Price = 19.99m,
+                            Title = "The Da Vinci Code"
+                        },
+                        new
+                        {
+                            BookID = 12,
+                            Author = "Stephen King",
+                            AverageRating = 4.6m,
+                            Price = 17.75m,
+                            Title = "The Shining"
+                        },
+                        new
+                        {
+                            BookID = 13,
+                            Author = "Frank Herbert",
+                            AverageRating = 4.7m,
+                            Price = 22.50m,
+                            Title = "Dune"
+                        },
+                        new
+                        {
+                            BookID = 14,
+                            Author = "Patrick Rothfuss",
+                            AverageRating = 4.8m,
+                            Price = 21.00m,
+                            Title = "The Name of the Wind"
+                        },
+                        new
+                        {
+                            BookID = 15,
+                            Author = "C.S. Lewis",
+                            AverageRating = 4.6m,
+                            Price = 15.00m,
+                            Title = "The Chronicles of Narnia"
+                        },
+                        new
+                        {
+                            BookID = 16,
+                            Author = "John Green",
+                            AverageRating = 4.3m,
+                            Price = 12.50m,
+                            Title = "The Fault in Our Stars"
+                        },
+                        new
+                        {
+                            BookID = 17,
+                            Author = "Lois Lowry",
+                            AverageRating = 4.4m,
+                            Price = 11.00m,
+                            Title = "The Giver"
+                        },
+                        new
+                        {
+                            BookID = 18,
+                            Author = "S.E. Hinton",
+                            AverageRating = 4.2m,
+                            Price = 10.50m,
+                            Title = "The Outsiders"
+                        },
+                        new
+                        {
+                            BookID = 19,
+                            Author = "Suzanne Collins",
+                            AverageRating = 4.5m,
+                            Price = 14.99m,
+                            Title = "The Hunger Games"
+                        },
+                        new
+                        {
+                            BookID = 20,
+                            Author = "Markus Zusak",
+                            AverageRating = 4.7m,
+                            Price = 13.99m,
+                            Title = "The Book Thief"
+                        });
+                });
+
             modelBuilder.Entity("SE1811.model.Category", b =>
                 {
                     b.Property<int>("CategoryID")

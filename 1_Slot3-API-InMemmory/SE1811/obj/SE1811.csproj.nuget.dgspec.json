@@ -52,7 +52,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.OData": {
               "target": "Package",
-              "version": "[9.2.1, )"
+              "version": "[9.3.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

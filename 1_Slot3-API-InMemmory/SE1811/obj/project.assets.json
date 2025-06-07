@@ -641,7 +641,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OData/9.2.1": {
+      "Microsoft.AspNetCore.OData/9.3.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.OData.Core": "[8.2.3, 9.0.0)",
@@ -3702,10 +3702,10 @@
         "logo.png"
       ]
     },
-    "Microsoft.AspNetCore.OData/9.2.1": {
-      "sha512": "lpeUMgPLAhoruijWilKjw+wI0BcBGekD+W5lr4SdiEShw8e9RiqRIYO7/ogGst0lL+IP4nR1nLWVgSgMSwrDCg==",
+    "Microsoft.AspNetCore.OData/9.3.2": {
+      "sha512": "kbAz28Pex9+NBPvgXKHnCyyI5i5W099HsTWPuleyzeyjH4uY9dL89JgbAYaXx768Os9YJqt66+A66xAIjhMoTQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.odata/9.2.1",
+      "path": "microsoft.aspnetcore.odata/9.3.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3713,7 +3713,7 @@
         "images/odata.png",
         "lib/net8.0/Microsoft.AspNetCore.OData.dll",
         "lib/net8.0/Microsoft.AspNetCore.OData.xml",
-        "microsoft.aspnetcore.odata.9.2.1.nupkg.sha512",
+        "microsoft.aspnetcore.odata.9.3.2.nupkg.sha512",
         "microsoft.aspnetcore.odata.nuspec"
       ]
     },
@@ -8314,7 +8314,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Microsoft.AspNetCore.OData >= 9.2.1",
+      "Microsoft.AspNetCore.OData >= 9.3.2",
       "Microsoft.EntityFrameworkCore >= 8.0.16",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.16",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.16",
@@ -8375,7 +8375,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.OData": {
             "target": "Package",
-            "version": "[9.2.1, )"
+            "version": "[9.3.2, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

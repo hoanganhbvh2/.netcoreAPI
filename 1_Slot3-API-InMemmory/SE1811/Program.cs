@@ -14,9 +14,10 @@ builder.WebHost.ConfigureKestrel(options =>
         listenOptions.UseHttps(); // Có thể chỉ dùng dev cert hoặc chỉ định file cert
     });
 });
+
 // mac dinh api no trav e json
 builder.Services.AddControllers();
-builder.Services.AddControllers().AddXmlDataContractSerializerFormatters();
+//builder.Services.AddControllers().AddXmlDataContractSerializerFormatters();
 builder.Services.AddDbContext<ProductContext>(op => op.UseSqlServer(
        builder.Configuration.GetConnectionString("product")
     ));
@@ -26,24 +27,27 @@ builder.Services.AddDbContext<ProductContext>(op => op.UseSqlServer(
 //    options.OutputFormatters.Add(new CsvOutputFomatter());
 //});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//IEdmModel GetEdmModel()
-//{
-//    var odataBuilder = new ODataConventionModelBuilder();
-//    odataBuilder.EntitySet<Product>("YourEntities"); // Replace with your entity
-//    return odataBuilder.GetEdmModel();
-//}
-builder.Services.AddControllers().AddOData(
-    options => options.Select().Filter().Count().OrderBy()
-    );
-//builder.Services.AddControllers()
-//.AddOData(options => options
-//.Select()
-//.Filter()
-//.Count()
-//.OrderBy()
-//.Expand()
-//.AddRouteComponents("odata", GetEdmModel())
-//);
+
+//builder.Services.AddControllers().AddOData(
+//    options => options.Select().Filter().Count().OrderBy()
+//    );
+builder.Services.AddControllers()
+.AddOData(options => options
+.Select()
+.Filter()
+.Count()
+.OrderBy()
+.SetMaxTop(100)
+.Expand()
+.AddRouteComponents("odata", GetEdmModel()));
+IEdmModel GetEdmModel()
+{
+    ODataConventionModelBuilder odataBuilder = new ODataConventionModelBuilder();
+    odataBuilder.EntitySet<Book>("Book"); // Replace with your entity
+    odataBuilder.EntitySet<Product>("product");
+    return odataBuilder.GetEdmModel();
+}
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -52,14 +56,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
+//app.UseRouting();
 app.UseAuthorization();
-
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Values}/{action=index}/{id?}");
 app.MapControllers();
-
 app.Run();
+

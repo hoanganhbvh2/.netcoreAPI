@@ -7,11 +7,27 @@
 namespace SE1811.Migrations
 {
     /// <inheritdoc />
-    public partial class v0 : Migration
+    public partial class vo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Book",
+                columns: table => new
+                {
+                    BookID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AverageRating = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Book", x => x.BookID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
@@ -46,6 +62,33 @@ namespace SE1811.Migrations
                         principalTable: "Categories",
                         principalColumn: "CategoryID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Book",
+                columns: new[] { "BookID", "Author", "AverageRating", "Price", "Title" },
+                values: new object[,]
+                {
+                    { 1, "J.R.R. Tolkien", 4.8m, 15.99m, "The Hobbit" },
+                    { 2, "J.K. Rowling", 4.9m, 20.50m, "Harry Potter and the Philosopher's Stone" },
+                    { 3, "F. Scott Fitzgerald", 4.3m, 12.99m, "The Great Gatsby" },
+                    { 4, "Arthur Conan Doyle", 4.6m, 18.75m, "Adventure of Sherlock Holmes" },
+                    { 5, "Jane Austen", 4.7m, 10.00m, "Pride and Prejudice" },
+                    { 6, "J.R.R. Tolkien", 4.9m, 25.00m, "The Lord of the Rings" },
+                    { 7, "George Orwell", 4.5m, 14.99m, "1984" },
+                    { 8, "Harper Lee", 4.8m, 13.50m, "To Kill a Mockingbird" },
+                    { 9, "J.D. Salinger", 4.2m, 11.99m, "The Catcher in the Rye" },
+                    { 10, "Paulo Coelho", 4.4m, 16.50m, "The Alchemist" },
+                    { 11, "Dan Brown", 4.1m, 19.99m, "The Da Vinci Code" },
+                    { 12, "Stephen King", 4.6m, 17.75m, "The Shining" },
+                    { 13, "Frank Herbert", 4.7m, 22.50m, "Dune" },
+                    { 14, "Patrick Rothfuss", 4.8m, 21.00m, "The Name of the Wind" },
+                    { 15, "C.S. Lewis", 4.6m, 15.00m, "The Chronicles of Narnia" },
+                    { 16, "John Green", 4.3m, 12.50m, "The Fault in Our Stars" },
+                    { 17, "Lois Lowry", 4.4m, 11.00m, "The Giver" },
+                    { 18, "S.E. Hinton", 4.2m, 10.50m, "The Outsiders" },
+                    { 19, "Suzanne Collins", 4.5m, 14.99m, "The Hunger Games" },
+                    { 20, "Markus Zusak", 4.7m, 13.99m, "The Book Thief" }
                 });
 
             migrationBuilder.InsertData(
@@ -86,6 +129,9 @@ namespace SE1811.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Book");
+
             migrationBuilder.DropTable(
                 name: "Products");
 

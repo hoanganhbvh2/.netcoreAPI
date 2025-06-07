@@ -15,6 +15,7 @@ namespace SE1811.Controllers
 {
     //[Produces("application/xml")]
     [Route("api/[controller]")]
+    [EnableQuery]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -25,18 +26,35 @@ namespace SE1811.Controllers
         }
 
         // GET: api/Products
-       
+        //[Route("a")]
+
         [HttpGet("about")]
-        public String About() {
+        [EnableQuery]
+        public String About()
+        {
             return ("day la about");
         }
         //[Produces("application/xml")]
         [HttpGet]
-        [EnableQuery(PageSize = 5)]
- 
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        [EnableQuery]
+
+        //public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public IQueryable get()
         {
-            return await _context.Products.ToListAsync();
+            //return await _context.Products.Include(p=>p.Category).ToListAsync();
+            //var products = await _context.Products
+            //    .Include(p => p.Category)
+            //    .Select(p => 
+            //    new DtoProductcs{
+            //        ProductID = p.ProductID,
+            //        NameProduct = p.NameProduct,
+            //        DescriptionProduct = p.DescriptionProduct,
+            //        Price = p.Price,
+            //        CategoryID = p.CategoryID,
+            //        CategoryName = p.Category.CategoryName,
+            //        Cate_Description=p.Category.Description
+            //    }).ToListAsync();
+            return _context.Products;
         }
         // GET: api/Products/5
         [HttpGet("{id}")]
@@ -87,13 +105,15 @@ namespace SE1811.Controllers
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
             var exit = await _context.Categories.FindAsync(product.CategoryID);
-            if (exit == null) {
-                return BadRequest("khong thay id") ;
+            if (exit == null)
+            {
+                return BadRequest("khong thay id");
             }
-            else { 
+            else
+            {
                 _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetProduct", new { id = product.ProductID }, product);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetProduct", new { id = product.ProductID }, product);
             }
         }
 

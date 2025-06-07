@@ -28,7 +28,6 @@ namespace SE1811.CustomFommatter
             await response.WriteAsync(buffer.ToString(), selectedEncoding);
 
         }
-
         private static void FormatCsv(StringBuilder buffer, object obj) {
             // Thêm tiêu đề CSV
 

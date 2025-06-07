@@ -28,6 +28,27 @@
                 }
             );
 
+            modelBuilder.Entity<Book>().HasData(
+                new Book { BookID = 1, Title = "The Hobbit", Author = "J.R.R. Tolkien", Price = 15.99M, AverageRating = 4.8M },
+                new Book { BookID = 2, Title = "Harry Potter and the Philosopher's Stone", Author = "J.K. Rowling", Price = 20.50M, AverageRating = 4.9M },
+                new Book { BookID = 3, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", Price = 12.99M, AverageRating = 4.3M },
+                new Book { BookID = 4, Title = "Adventure of Sherlock Holmes", Author = "Arthur Conan Doyle", Price = 18.75M, AverageRating = 4.6M },
+                new Book { BookID = 5, Title = "Pride and Prejudice", Author = "Jane Austen", Price = 10.00M, AverageRating = 4.7M },
+                new Book { BookID = 6, Title = "The Lord of the Rings", Author = "J.R.R. Tolkien", Price = 25.00M, AverageRating = 4.9M },
+                new Book { BookID = 7, Title = "1984", Author = "George Orwell", Price = 14.99M, AverageRating = 4.5M },
+                new Book { BookID = 8, Title = "To Kill a Mockingbird", Author = "Harper Lee", Price = 13.50M, AverageRating = 4.8M },
+                new Book { BookID = 9, Title = "The Catcher in the Rye", Author = "J.D. Salinger", Price = 11.99M, AverageRating = 4.2M },
+                new Book { BookID = 10, Title = "The Alchemist", Author = "Paulo Coelho", Price = 16.50M, AverageRating = 4.4M },
+                new Book { BookID = 11, Title = "The Da Vinci Code", Author = "Dan Brown", Price = 19.99M, AverageRating = 4.1M },
+                new Book { BookID = 12, Title = "The Shining", Author = "Stephen King", Price = 17.75M, AverageRating = 4.6M },
+                new Book { BookID = 13, Title = "Dune", Author = "Frank Herbert", Price = 22.50M, AverageRating = 4.7M },
+                new Book { BookID = 14, Title = "The Name of the Wind", Author = "Patrick Rothfuss", Price = 21.00M, AverageRating = 4.8M },
+                new Book { BookID = 15, Title = "The Chronicles of Narnia", Author = "C.S. Lewis", Price = 15.00M, AverageRating = 4.6M },
+                new Book { BookID = 16, Title = "The Fault in Our Stars", Author = "John Green", Price = 12.50M, AverageRating = 4.3M },
+                new Book { BookID = 17, Title = "The Giver", Author = "Lois Lowry", Price = 11.00M, AverageRating = 4.4M },
+                new Book { BookID = 18, Title = "The Outsiders", Author = "S.E. Hinton", Price = 10.50M, AverageRating = 4.2M },
+                new Book { BookID = 19, Title = "The Hunger Games", Author = "Suzanne Collins", Price = 14.99M, AverageRating = 4.5M },
+                new Book { BookID = 20, Title = "The Book Thief", Author = "Markus Zusak", Price = 13.99M, AverageRating = 4.7M });
             modelBuilder.Entity<Product>().HasData(
                 // Instruments
                 new Product { ProductID = 1, NameProduct = "Guitar", DescriptionProduct = "Classic acoustic guitar", CategoryID = 1 },
