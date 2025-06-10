@@ -1,5 +1,6 @@
 ﻿namespace SE1811.DAO
 {
+    using Entity.model;
     using Microsoft.EntityFrameworkCore;
     using SE1811.model;
 
@@ -68,6 +69,34 @@
                 new Product { ProductID = 11, NameProduct = "C# Programming", DescriptionProduct = "Beginner to Advanced", CategoryID = 3 },
                 new Product { ProductID = 12, NameProduct = "Clean Code", DescriptionProduct = "A Handbook of Agile Software Craftsmanship", CategoryID = 3 }
             );
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 1, Name = "Tech Innovators", Address = "123 Silicon Street", Country = "USA" },
+                new Company { Id = 2, Name = "Green Solutions", Address = "456 Eco Ave", Country = "Canada" },
+                new Company { Id = 3, Name = "Finance Pros", Address = "789 Wall Street", Country = "UK" },
+                new Company { Id = 4, Name = "Health Plus", Address = "101 Med Lane", Country = "Germany" },
+                new Company { Id = 5, Name = "Edu Learn", Address = "202 Knowledge Road", Country = "France" },
+                new Company { Id=6, Name = "Future Tech", Address = "808 Vision Lane", Country = "Netherlands" },
+                new Company { Id = 7, Name = "Smart Solutions", Address = "909 Innovation Ave", Country = "Spain" },
+                new Company { Id = 8, Name = "Cyber Defense", Address = "1010 Secure Blvd", Country = "South Korea" },
+                new Company { Id = 9, Name = "Cyber Defense", Address = "1010 Secure Blvd", Country = "South Korea" },
+                new Company { Id = 10, Name = "Digital Era", Address = "1111 Web Street", Country = "Brazil" },
+                new Company { Id = 11, Name = "Sustainable Tech", Address = "1212 Green Road", Country = "Sweden" }
+);
+
+
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee { Id = 1, Name = "Alice Johnson", Age = 30, Position = "Developer", CompanyId = 1},
+                new Employee { Id = 2, Name = "Bob Smith", Age = 35, Position = "Manager", CompanyId = 1 },
+                new Employee { Id = 3, Name = "Charlie Brown", Age = 28, Position = "Analyst", CompanyId = 2 },
+                new Employee { Id = 4, Name = "David White", Age = 40, Position = "Designer", CompanyId =2},
+                new Employee { Id = 5, Name = "Eve Black", Age = 25, Position = "Intern", CompanyId =3 },
+                new Employee { Id = 6, Name = "Franklin Harris", Age = 32, Position = "Engineer", CompanyId =4},
+                new Employee { Id = 7, Name = "Grace Miller", Age = 29, Position = "Consultant", CompanyId = 4},
+                new Employee { Id = 8, Name = "Henry Ford", Age = 45, Position = "CEO", CompanyId = 3 },
+                new Employee { Id = 9, Name = "Ivy Green", Age = 27, Position = "Marketing", CompanyId = 4 },
+                new Employee { Id = 10, Name = "Jack Wilson", Age = 38, Position = "Finance", CompanyId = 5 }
+            );
+
         }
     }
 }

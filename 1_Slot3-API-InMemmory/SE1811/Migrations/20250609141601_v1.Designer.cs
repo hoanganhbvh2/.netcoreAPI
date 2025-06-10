@@ -11,8 +11,8 @@ using SE1811.DAO;
 namespace SE1811.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20250605100237_vo")]
-    partial class vo
+    [Migration("20250609141601_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,227 @@ namespace SE1811.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Entity.model.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CompanyId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "123 Silicon Street",
+                            Country = "USA",
+                            Name = "Tech Innovators"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "456 Eco Ave",
+                            Country = "Canada",
+                            Name = "Green Solutions"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "789 Wall Street",
+                            Country = "UK",
+                            Name = "Finance Pros"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "101 Med Lane",
+                            Country = "Germany",
+                            Name = "Health Plus"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "202 Knowledge Road",
+                            Country = "France",
+                            Name = "Edu Learn"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "808 Vision Lane",
+                            Country = "Netherlands",
+                            Name = "Future Tech"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Address = "909 Innovation Ave",
+                            Country = "Spain",
+                            Name = "Smart Solutions"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Address = "1010 Secure Blvd",
+                            Country = "South Korea",
+                            Name = "Cyber Defense"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Address = "1010 Secure Blvd",
+                            Country = "South Korea",
+                            Name = "Cyber Defense"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Address = "1111 Web Street",
+                            Country = "Brazil",
+                            Name = "Digital Era"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Address = "1212 Green Road",
+                            Country = "Sweden",
+                            Name = "Sustainable Tech"
+                        });
+                });
+
+            modelBuilder.Entity("Entity.model.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("EmployeeId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 30,
+                            CompanyId = 1,
+                            Name = "Alice Johnson",
+                            Position = "Developer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 35,
+                            CompanyId = 1,
+                            Name = "Bob Smith",
+                            Position = "Manager"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 28,
+                            CompanyId = 2,
+                            Name = "Charlie Brown",
+                            Position = "Analyst"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 40,
+                            CompanyId = 2,
+                            Name = "David White",
+                            Position = "Designer"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 25,
+                            CompanyId = 3,
+                            Name = "Eve Black",
+                            Position = "Intern"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Age = 32,
+                            CompanyId = 4,
+                            Name = "Franklin Harris",
+                            Position = "Engineer"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Age = 29,
+                            CompanyId = 4,
+                            Name = "Grace Miller",
+                            Position = "Consultant"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 45,
+                            CompanyId = 3,
+                            Name = "Henry Ford",
+                            Position = "CEO"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Age = 27,
+                            CompanyId = 4,
+                            Name = "Ivy Green",
+                            Position = "Marketing"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Age = 38,
+                            CompanyId = 5,
+                            Name = "Jack Wilson",
+                            Position = "Finance"
+                        });
+                });
 
             modelBuilder.Entity("SE1811.model.Book", b =>
                 {
@@ -381,6 +602,17 @@ namespace SE1811.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Entity.model.Employee", b =>
+                {
+                    b.HasOne("Entity.model.Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("SE1811.model.Product", b =>
                 {
                     b.HasOne("SE1811.model.Category", "Category")
@@ -390,6 +622,11 @@ namespace SE1811.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Entity.model.Company", b =>
+                {
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("SE1811.model.Category", b =>

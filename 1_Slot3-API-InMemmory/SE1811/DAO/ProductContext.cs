@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SE1811.model;
+using Entity.model;
 
 namespace SE1811.DAO
 {
@@ -12,6 +13,9 @@ namespace SE1811.DAO
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Book { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Company> Company{ get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,6 +26,9 @@ namespace SE1811.DAO
          .WithMany(c => c.Products)
          .HasForeignKey(p => p.CategoryID)
          .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Employee>()
+            .HasOne(p => p.Company)
+            .WithMany(c => c.Employees).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Seed();
 
         }

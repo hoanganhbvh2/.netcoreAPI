@@ -37,24 +37,24 @@ namespace SE1811.Controllers
         //[Produces("application/xml")]
         [HttpGet]
         [EnableQuery]
-
-        //public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
-        public IQueryable get()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        //public IQueryable get()
         {
-            //return await _context.Products.Include(p=>p.Category).ToListAsync();
-            //var products = await _context.Products
-            //    .Include(p => p.Category)
-            //    .Select(p => 
-            //    new DtoProductcs{
-            //        ProductID = p.ProductID,
-            //        NameProduct = p.NameProduct,
-            //        DescriptionProduct = p.DescriptionProduct,
-            //        Price = p.Price,
-            //        CategoryID = p.CategoryID,
-            //        CategoryName = p.Category.CategoryName,
-            //        Cate_Description=p.Category.Description
-            //    }).ToListAsync();
-            return _context.Products;
+            return await _context.Products.Include(p => p.Category).ToListAsync();
+            var products = await _context.Products
+                .Include(p => p.Category)
+                .Select(p =>
+                new DtoProductcs
+                {
+                    ProductID = p.ProductID,
+                    NameProduct = p.NameProduct,
+                    DescriptionProduct = p.DescriptionProduct,
+                    Price = p.Price,
+                    CategoryID = p.CategoryID,
+                    CategoryName = p.Category.CategoryName,
+                    Cate_Description = p.Category.Description
+                }).ToListAsync();
+            //return _context.Products;
         }
         // GET: api/Products/5
         [HttpGet("{id}")]

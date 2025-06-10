@@ -11,7 +11,7 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(7271, listenOptions =>
     {
-        listenOptions.UseHttps(); // Có thể chỉ dùng dev cert hoặc chỉ định file cert
+        listenOptions.UseHttps(); 
     });
 });
 
@@ -34,8 +34,8 @@ builder.Services.AddDbContext<ProductContext>(op => op.UseSqlServer(
 builder.Services.AddControllers()
 .AddOData(options => options
 .Select()
-.Filter()
 .Count()
+.Filter()
 .OrderBy()
 .SetMaxTop(100)
 .Expand()
@@ -43,8 +43,8 @@ builder.Services.AddControllers()
 IEdmModel GetEdmModel()
 {
     ODataConventionModelBuilder odataBuilder = new ODataConventionModelBuilder();
-    odataBuilder.EntitySet<Book>("Book"); // Replace with your entity
-    odataBuilder.EntitySet<Product>("product");
+    odataBuilder.EntitySet<Book>("Book3"); // Replace with your entity
+    odataBuilder.EntitySet<Product>("Products");
     return odataBuilder.GetEdmModel();
 }
 

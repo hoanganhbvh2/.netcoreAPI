@@ -7,7 +7,7 @@
 namespace SE1811.Migrations
 {
     /// <inheritdoc />
-    public partial class vo : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,6 +43,21 @@ namespace SE1811.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Company",
+                columns: table => new
+                {
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Company", x => x.CompanyId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -61,6 +76,28 @@ namespace SE1811.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Position = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_Employees_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Company",
+                        principalColumn: "CompanyId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -102,6 +139,41 @@ namespace SE1811.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Company",
+                columns: new[] { "CompanyId", "Address", "Country", "Name" },
+                values: new object[,]
+                {
+                    { 1, "123 Silicon Street", "USA", "Tech Innovators" },
+                    { 2, "456 Eco Ave", "Canada", "Green Solutions" },
+                    { 3, "789 Wall Street", "UK", "Finance Pros" },
+                    { 4, "101 Med Lane", "Germany", "Health Plus" },
+                    { 5, "202 Knowledge Road", "France", "Edu Learn" },
+                    { 6, "808 Vision Lane", "Netherlands", "Future Tech" },
+                    { 7, "909 Innovation Ave", "Spain", "Smart Solutions" },
+                    { 8, "1010 Secure Blvd", "South Korea", "Cyber Defense" },
+                    { 9, "1010 Secure Blvd", "South Korea", "Cyber Defense" },
+                    { 10, "1111 Web Street", "Brazil", "Digital Era" },
+                    { 11, "1212 Green Road", "Sweden", "Sustainable Tech" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "EmployeeId", "Age", "CompanyId", "Name", "Position" },
+                values: new object[,]
+                {
+                    { 1, 30, 1, "Alice Johnson", "Developer" },
+                    { 2, 35, 1, "Bob Smith", "Manager" },
+                    { 3, 28, 2, "Charlie Brown", "Analyst" },
+                    { 4, 40, 2, "David White", "Designer" },
+                    { 5, 25, 3, "Eve Black", "Intern" },
+                    { 6, 32, 4, "Franklin Harris", "Engineer" },
+                    { 7, 29, 4, "Grace Miller", "Consultant" },
+                    { 8, 45, 3, "Henry Ford", "CEO" },
+                    { 9, 27, 4, "Ivy Green", "Marketing" },
+                    { 10, 38, 5, "Jack Wilson", "Finance" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "ProductID", "CategoryID", "DescriptionProduct", "NameProduct", "Price" },
                 values: new object[,]
@@ -121,6 +193,11 @@ namespace SE1811.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_CompanyId",
+                table: "Employees",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryID",
                 table: "Products",
                 column: "CategoryID");
@@ -133,7 +210,13 @@ namespace SE1811.Migrations
                 name: "Book");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Company");
 
             migrationBuilder.DropTable(
                 name: "Categories");
