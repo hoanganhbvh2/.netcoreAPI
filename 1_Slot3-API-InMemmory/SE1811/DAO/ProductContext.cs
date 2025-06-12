@@ -13,8 +13,7 @@ namespace SE1811.DAO
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Book { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Company> Company{ get; set; }
+
 
 
 

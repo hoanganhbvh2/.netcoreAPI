@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E1P8hpQfu6w=",
+  "dgSpecHash": "XNRMz8Vr/yE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\king\\source\\repos\\.netcoreAPI\\1_Slot3-API-InMemmory\\Entity\\Entity.csproj",
+  "projectFilePath": "C:\\Users\\king\\source\\repos\\SE1811\\.netcoreAPI\\1_Slot3-API-InMemmory\\Entity\\Entity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\king\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\king\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
