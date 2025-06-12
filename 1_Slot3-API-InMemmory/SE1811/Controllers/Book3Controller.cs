@@ -25,10 +25,16 @@ namespace SE1811.Controllers
 
         [HttpGet]
         [EnableQuery]
-        public IQueryable<Book> Get()
+        //public IQueryable<Book> GetAll()
+        //{
 
+        //    return _context.Book;
+        //}
+        public IActionResult Get()
         {
-            return _context.Book;
+
+            return Ok(_context.Book);
         }
+
     }
 }

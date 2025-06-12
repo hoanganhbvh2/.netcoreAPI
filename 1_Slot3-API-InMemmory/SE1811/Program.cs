@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.OData;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using SE1811.CustomFommatter;
@@ -47,6 +49,25 @@ IEdmModel GetEdmModel()
     odataBuilder.EntitySet<Product>("Products");
     return odataBuilder.GetEdmModel();
 }
+
+var jwtSettings = builder.Configuration.GetSection("jwt");
+var secretKey = jwtSettings["secret"];
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings["issuer"],
+            ValidAudience = jwtSettings["audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secretKey))
+        };
+    });
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

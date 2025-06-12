@@ -270,3 +270,4 @@ C:\Users\king\source\repos\.netcoreAPI\1_Slot3-API-InMemmory\SE1811\obj\Debug\ne
 C:\Users\king\source\repos\.netcoreAPI\1_Slot3-API-InMemmory\SE1811\obj\Debug\net8.0\ref\SE1811.dll
 C:\Users\king\source\repos\.netcoreAPI\1_Slot3-API-InMemmory\SE1811\bin\Debug\net8.0\Entity.dll
 C:\Users\king\source\repos\.netcoreAPI\1_Slot3-API-InMemmory\SE1811\bin\Debug\net8.0\Entity.pdb
+C:\Users\king\source\repos\.netcoreAPI\1_Slot3-API-InMemmory\SE1811\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

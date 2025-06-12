@@ -11,7 +11,7 @@ namespace Entity.model
     public class Employee
     {
         [Column("EmployeeId")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Employee name is a required field.")]
         [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")]
@@ -25,7 +25,7 @@ namespace Entity.model
         public string Position { get; set; }
 
         [ForeignKey(nameof(Company))]
-        public int CompanyId { get; set; }
+        public Guid CompanyId { get; set; }
         public Company Company { get; set; }
     }
 }
