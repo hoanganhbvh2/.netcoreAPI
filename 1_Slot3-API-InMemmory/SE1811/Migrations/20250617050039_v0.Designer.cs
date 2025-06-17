@@ -12,8 +12,8 @@ using SE1811.DAO;
 namespace SE1811.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20250612071217_v1")]
-    partial class v1
+    [Migration("20250617050039_v0")]
+    partial class v0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

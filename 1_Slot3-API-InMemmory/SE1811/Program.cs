@@ -23,16 +23,6 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ProductContext>(op => op.UseSqlServer(
        builder.Configuration.GetConnectionString("product")
     ));
-//builder.Services.AddControllers(options =>
-//{
-//    // Thêm bộ định dạng CSV
-//    options.OutputFormatters.Add(new CsvOutputFomatter());
-//});
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
-//builder.Services.AddControllers().AddOData(
-//    options => options.Select().Filter().Count().OrderBy()
-//    );
 builder.Services.AddControllers()
 .AddOData(options => options
 .Select()
@@ -42,16 +32,18 @@ builder.Services.AddControllers()
 .SetMaxTop(100)
 .Expand()
 .AddRouteComponents("odata", GetEdmModel()));
+
 IEdmModel GetEdmModel()
 {
     ODataConventionModelBuilder odataBuilder = new ODataConventionModelBuilder();
-    odataBuilder.EntitySet<Book>("Book3"); // Replace with your entity
-    odataBuilder.EntitySet<Product>("Products");
+    odataBuilder.EntitySet<Book>("Test"); // Replace with your entity
+    odataBuilder.EntitySet<Product>("Test2");
     return odataBuilder.GetEdmModel();
 }
 
 var jwtSettings = builder.Configuration.GetSection("jwt");
 var secretKey = jwtSettings["secret"];
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -67,7 +59,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -81,9 +81,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 //app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 //app.MapControllerRoute(
 //    name: "default",

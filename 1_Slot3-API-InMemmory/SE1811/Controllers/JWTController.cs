@@ -20,6 +20,12 @@ namespace SE1811.Controllers
         //    return View();
         //}
         private readonly IConfiguration _config;
+
+        public JWTController(IConfiguration config)
+        {
+            _config = config;
+        }
+
         [HttpGet("private")]
         [Authorize]
         public IActionResult PrivateAPI()
@@ -33,17 +39,14 @@ namespace SE1811.Controllers
             return Ok(list);
         }
         [HttpPost("login")]
- 
         public IActionResult Login([FromBody] LoginModel model)
         {
-            // Đây chỉ là kiểm tra cứng đơn giản
             if (model.Username == "admin" && model.Password == "admin")
             {
                 var token = GenerateJwtToken(model.Username);
 
                 return Ok(new { accessToken = token });
             }
-
             return Unauthorized("Invalid username or password");
         }
         private string GenerateJwtToken(string username)
